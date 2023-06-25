@@ -15,6 +15,4 @@ data class PaymentMethod(
     @SerializedName("payer_bank_details") val payerBankDetails: PayerBankDetails?,
     @SerializedName("payment_purpose") val paymentPurpose: String?,
     @SerializedName("vat_data") val vatData: VatData?,
-) {
-
-}
+)

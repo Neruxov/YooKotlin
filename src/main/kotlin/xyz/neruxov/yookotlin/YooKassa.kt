@@ -9,17 +9,24 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.util.*
 
-class YooKassa (
-    val shopId: String,
-    val secretKey: String,
+class YooKassa(
+    private val shopId: String,
+    private val secretKey: String,
 ) {
 
     fun createPayment(data: Map<String, Any>): Payment {
-        return post(Payment::class.java, "https://api.yookassa.ru/v3/payments", JsonUtil.toJson(data)) as Payment
+        return post(
+            Payment::class.java,
+            "https://api.yookassa.ru/v3/payments",
+            JsonUtil.toJson(data)
+        ) as Payment
     }
 
     fun getPayment(id: String): Payment {
-        return get(Payment::class.java, "https://api.yookassa.ru/v3/payments/$id") as Payment
+        return get(
+            Payment::class.java,
+            "https://api.yookassa.ru/v3/payments/$id"
+        ) as Payment
     }
 
     fun getPayments(): List<Payment> {
@@ -33,11 +40,19 @@ class YooKassa (
     }
 
     fun capturePayment(id: String, data: Map<String, Any>): Payment {
-        return post(Payment::class.java, "https://api.yookassa.ru/v3/payments/$id/capture", JsonUtil.toJson(data)) as Payment
+        return post(
+            Payment::class.java,
+            "https://api.yookassa.ru/v3/payments/$id/capture",
+            JsonUtil.toJson(data)
+        ) as Payment
     }
 
     fun cancelPayment(id: String): Payment {
-        return post(Payment::class.java, "https://api.yookassa.ru/v3/payments/$id/cancel", JsonObject()) as Payment
+        return post(
+            Payment::class.java,
+            "https://api.yookassa.ru/v3/payments/$id/cancel",
+            JsonObject()
+        ) as Payment
     }
 
     private fun get(responseType: Class<*>, url: String): Any {
