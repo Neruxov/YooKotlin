@@ -1,6 +1,6 @@
 package xyz.neruxov.yookotlin.data.model
 
-import xyz.neruxov.yookotlin.data.enum.Currency
+import java.util.*
 
 data class Amount(
     val value: String,
