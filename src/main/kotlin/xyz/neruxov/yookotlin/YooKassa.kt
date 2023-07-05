@@ -1,6 +1,7 @@
 package xyz.neruxov.yookotlin
 
 import com.google.gson.JsonObject
+import xyz.neruxov.yookotlin.data.model.Notification
 import xyz.neruxov.yookotlin.data.model.Payment
 import xyz.neruxov.yookotlin.util.JsonUtil
 import java.net.URI
@@ -53,6 +54,14 @@ class YooKassa(
             "https://api.yookassa.ru/v3/payments/$id/cancel",
             JsonObject()
         ) as Payment
+    }
+
+    fun processNotification(data: JsonObject): Notification {
+        return JsonUtil.fromJson(data, Notification::class.java) as Notification
+    }
+
+    fun processNotification(data: String): Notification {
+        return JsonUtil.fromJson(data, Notification::class.java) as Notification
     }
 
     private fun get(responseType: Class<*>, url: String): Any {
